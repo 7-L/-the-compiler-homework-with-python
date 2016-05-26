@@ -4,6 +4,7 @@
 #date: 2016-5-19
 #--------------------------------------------------------------------------  
 import lex
+import sys
 
 
 #lexpos - Current position in the input string
@@ -96,7 +97,10 @@ if __name__ == "__main__":
     f.close()  
     lexer.input(data)  
    
+    f = open("./output.txt",'rb')   #put result to output.txt
     while True:  
         tok = lexer.token()  
         if not tok: break      # No more input  
+        f.write("%s\t%10s\n" %(tok.value,tok.type))   #格式不变写到output.txt中，同时也在控制台输出
         print tok.value+"\t---->\t"+tok.type
+    f.close()   #关闭流
